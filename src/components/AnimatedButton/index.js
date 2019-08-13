@@ -1,5 +1,5 @@
 import React from 'react'
-import { Animated, Button, StyleSheet, Text } from 'react-native'
+import { Animated, Button, View, StyleSheet, Text } from 'react-native'
 
 const AnimatedButton = () => {
 	let rotationDegrees = new Animated.Value(0)
@@ -9,26 +9,28 @@ const AnimatedButton = () => {
 		Animated.timing(rotationDegrees, {
 			toValue: 100,
 			duration: 4000,
-			useNativeDriver: true,
+			// useNativeDriver: true,
 		}).start()
 	}
 
 	return (
 		<>
-			<Button
-				testID="animated-bouncing-button"
-				onPress={handlePress}
-				title="Click to Animate Circle"
-				color="#00b7ff"
-				accessibilityLabel="Click to Toggle Animation"
-				accessibilityHint="Toggles Circle Animation"
-			/>
-		<Animated.View
-			testID='animated-bouncing-button-container'
-			style={[styles.container, styles.animatedContainer(rotationDegrees)]}
-		>
-			<Text style={styles.text}>Circle</Text>
-		</Animated.View>
+			<View style={styles.buttonContainer}>
+				<Button
+					testID="animated-bouncing-button"
+					onPress={handlePress}
+					title="Click to Animate Circle"
+					color="#00b7ff"
+					accessibilityLabel="Click to Toggle Animation"
+					accessibilityHint="Toggles Circle Animation"
+				/>
+			</View>
+			<Animated.View
+				testID="animated-bouncing-button-container"
+				style={[styles.container, styles.animatedContainer(rotationDegrees)]}
+			>
+				<Text style={styles.text}>Circle</Text>
+			</Animated.View>
 		</>
 	)
 }
@@ -53,7 +55,10 @@ const styles = StyleSheet.create({
 		],
 	}),
 	text: {
-		color: '#fff'
+		color: '#fff',
+	},
+	buttonContainer: {
+		padding: 20,
 	},
 	container: {
 		justifyContent: 'center',

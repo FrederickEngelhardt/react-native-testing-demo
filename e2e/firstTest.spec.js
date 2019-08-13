@@ -33,12 +33,11 @@ describe('App', () => {
 			// await expect(element(by.text(testProps.motdTextOptions[0]))).toBeVisible()
 		})
 	})
-})
 
-describe('Animated Button', () => {
-	it('should always be visible on the screen', async () => {
-		const ele = element(by.id('animated-bouncing-button'))
-		await ele.tap()
-		await expect(element(by.id('animated-bouncing-button-container'))).toBeNotVisible()
+	describe('Animated Circle', () => {
+		it('should leave the screen after being clicked', async () => {
+			element(by.id('animated-bouncing-button')).tap()
+			await expect(element(by.id('animated-bouncing-button-container'))).toBeNotVisible()
+		})
 	})
 })

@@ -21,7 +21,7 @@ const Main = props => {
           {textOptions[selectedMessageIndex]}
         </Text>
       </View>
-      <View style={styles.container1}>
+      <View style={styles.container2}>
         <Button
           testID="change-message-button"
           onPress={handlePress}
@@ -44,7 +44,10 @@ export default React.memo(Main)
 
 const styles = StyleSheet.create({
   container1: {
-    flex: 1,
+    flex: 1
+  },
+  container2: {
+    flex: 2,
     alignItems: 'center',
     justifyContent: 'center',
   },
