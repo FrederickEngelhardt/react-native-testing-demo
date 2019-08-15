@@ -65,27 +65,26 @@ describe('AnimatedButton', () => {
 	})
 
 	test('clicking animation button makes the circle leave the screen', async () => {
-		const { getByTestId, queryAllByA11yLabel } = render(<Main />)
+		const { getByA11yLabel } = render(<Main />)
 
-		const button = queryAllByA11yLabel('Click to Toggle Animation')
-		expect(button).toHaveLength(1)
+		const button = getByA11yLabel('Click to Toggle Animation')
 
-		fireEvent(button[0], 'press')
+		fireEvent(button, 'press')
 		const parseData = data =>
 			data._fiber.memoizedProps.style[1].transform[1].translateX._parent._value
 
 		// AnimatedValue should be 0
-		const data0 = getByTestId('animated-bouncing-button-container')
+		const data0 = getByA11yLabel('animated-bouncing-button-container')
 		expect(parseData(data0)).toBe(0)
 
 		// After 2000ms the value should be 50
 		global.timeTravel(2000)
-		const data50 = getByTestId('animated-bouncing-button-container')
+		const data50 = getByA11yLabel('animated-bouncing-button-container')
 		expect(parseData(data50)).toBe(50)
 
 		// After 4000ms value should be 100
 		global.timeTravel(4000)
-		const data100 = getByTestId('animated-bouncing-button-container')
+		const data100 = getByA11yLabel('animated-bouncing-button-container')
 		expect(parseData(data100)).toBe(100)
 	})
 })

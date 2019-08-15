@@ -9,7 +9,7 @@ const AnimatedButton = () => {
 		Animated.timing(rotationDegrees, {
 			toValue: 100,
 			duration: 4000,
-			// useNativeDriver: true,
+			useNativeDriver: true,
 		}).start()
 	}
 
@@ -27,6 +27,7 @@ const AnimatedButton = () => {
 			</View>
 			<Animated.View
 				testID="animated-bouncing-button-container"
+				accessibilityLabel="animated-bouncing-button-container"
 				style={[styles.container, styles.animatedContainer(rotationDegrees)]}
 			>
 				<Text style={styles.text}>Circle</Text>

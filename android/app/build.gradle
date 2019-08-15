@@ -192,6 +192,8 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    androidTestImplementation('com.wix:detox:+') { transitive = true }
+    androidTestImplementation 'junit:junit:4.12'
 
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";
@@ -209,12 +211,12 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
-//configurations.all {
-//    resolutionStrategy {
-//        // TODO: Line below required for Detox since version 12.5
-//        //   It should removed as soon as the project compiles without it
-//        force 'androidx.annotation:annotation:1.0.0'
-//    }
-//}
+configurations.all {
+    resolutionStrategy {
+        // TODO: Line below required for Detox since version 12.5
+        //   It should removed as soon as the project compiles without it
+        force 'androidx.annotation:annotation:1.0.0'
+    }
+}
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

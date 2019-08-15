@@ -1,6 +1,9 @@
 import testProps from '../src/components/Main/testProps'
 import { takeScreenshot, pixelDiff } from '../helpers/screenshot'
 
+/**
+ * [device, element, by] from detox
+ */
 describe('App', () => {
 	beforeEach(async () => {
 		await device.reloadReactNative()
@@ -10,7 +13,7 @@ describe('App', () => {
 		takeScreenshot('App')
 	})
 
-	afterAll( async () => {
+	afterAll(async () => {
 		pixelDiff('App')
 	})
 
@@ -28,16 +31,15 @@ describe('App', () => {
 
 			await tap()
 			await expect(element(by.text(testProps.motdTextOptions[2]))).toBeVisible()
-
-			// await tap()
-			// await expect(element(by.text(testProps.motdTextOptions[0]))).toBeVisible()
 		})
 	})
 
 	describe('Animated Circle', () => {
 		it('should leave the screen after being clicked', async () => {
-			element(by.id('animated-bouncing-button')).tap()
-			await expect(element(by.id('animated-bouncing-button-container'))).toBeNotVisible()
+			await element(by.id('animated-bouncing-button')).tap()
+			await expect(
+				element(by.id('animated-bouncing-button-container')),
+			).toBeNotVisible()
 		})
 	})
 })
